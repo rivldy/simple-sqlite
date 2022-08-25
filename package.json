@@ -1,0 +1,19 @@
+{
+  "name": "simple-sqlite",
+  "version": "1.0.0",
+  "description": "a library for simplified sqlite commands",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sqlite",
+    "sqlite3"
+  ],
+  "author": "rivldy",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^5.0.11"
+  }
+}
