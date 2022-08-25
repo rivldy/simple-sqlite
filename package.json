@@ -1,5 +1,5 @@
 {
-  "name": "simple-sqlite",
+  "name": "@rivldy/simple-sqlite",
   "version": "1.0.0",
   "description": "a library for simplified sqlite commands",
   "main": "index.js",
@@ -15,5 +15,14 @@
   "license": "ISC",
   "dependencies": {
     "sqlite3": "^5.0.11"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rivldy/simple-sqlite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rivldy/simple-sqlite/issues"
+  },
+  "homepage": "https://github.com/rivldy/simple-sqlite#readme"
 }
