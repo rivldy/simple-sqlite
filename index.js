@@ -68,8 +68,8 @@ export default function simpleSqlite(databaseName) {
         })
     }
 
-    const deleteOne = (tableName, data) => {
-        db.run(`DELETE FROM ${tableName} WHERE ${data.prop}=?`, [data.value], err => {
+    const deleteOne = (tableName, condition) => {
+        db.run(`DELETE FROM ${tableName} WHERE ${condition}`, [], err => {
             if(err) return console.error(err.message);
         })
     }
