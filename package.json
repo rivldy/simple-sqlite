@@ -1,6 +1,6 @@
 {
   "name": "@rivldy/simple-sqlite",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a library for simplified sqlite commands",
   "main": "index.js",
   "type": "module",
