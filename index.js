@@ -6,8 +6,33 @@ export default function simpleSqlite(databaseName) {
         if(err) return console.error(err.message);
     });
 
-    const createTable = (tableName, columns) => {
-        db.run(`CREATE TABLE IF NOT EXISTS ${tableName}(${columns})`, (result, err) => {
+    const createTable = (tableName, columns, options) => {
+        if(!options) {
+            options = {
+                autoId: true,
+            }
+        }
+        
+        if(!options.autoId) {
+            if(!options.primaryKey) return console.error("Error: no specified primary key");
+
+            let arrColumns = columns.split(",");
+            let newColumns = arrColumns.filter(col => {
+                return col != options.primaryKey;
+            });
+
+            const primaryKeyIndex = arrColumns.findIndex(col => col == options.primaryKey);
+            newColumns.splice(primaryKeyIndex, 0, `${arrColumns[primaryKeyIndex]} PRIMARY KEY`);
+            newColumns.join(",");
+            columns = [...newColumns].join(",");
+        } else {
+            let str = "id INTEGER PRIMARY KEY";
+            let newColumns = columns.split(",");
+            newColumns.unshift(str);
+            columns = [...newColumns].join(",");
+        }
+
+        db.run(`CREATE TABLE IF NOT EXISTS ${tableName}(${columns})`, (err) => {
             if(err) return console.error(err.message);
         });
     }
