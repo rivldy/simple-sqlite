@@ -37,13 +37,15 @@ export default function simpleSqlite(databaseName) {
 
     const updateData = (tableName, data, condition) => {
         let columns = [];
+        let values = [];
 
         for(let prop in data) {
-            let str = `${prop} = ${data[prop]}`;
+            let str = `${prop} = ?`;
             columns.push(str);
+            values.push(data[prop]);
         }
         
-        db.run(`UPDATE ${tableName} SET ${columns.join(",")} WHERE ${condition}`, [], err => {
+        db.run(`UPDATE ${tableName} SET ${columns.join(",")} WHERE ${condition}`, values, err => {
             if(err) return console.error(err.message);
         });
     }
@@ -57,8 +59,8 @@ export default function simpleSqlite(databaseName) {
         });
     }
 
-    const selectOne = (tableName, data , callback) => {
-        db.all(`SELECT * FROM ${tableName} WHERE ${data.prop}=?`, [data.value], (err, rows) => {
+    const selectOne = (tableName, condition, callback) => {
+        db.all(`SELECT * FROM ${tableName} WHERE ${condition}`, [], (err, rows) => {
             if(err) return console.error(err.message);
             if(typeof callback == "function") {
                 callback(rows);
